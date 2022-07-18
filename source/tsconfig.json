@@ -1,0 +1,31 @@
+{
+    "compilerOptions": {
+        "moduleResolution": "node",
+        "module": "commonjs",
+        "target": "ES5",
+        "lib": [
+            "ES2022"
+        ],
+        "resolveJsonModule": true,
+        "strictNullChecks": true,
+        "downlevelIteration": true,
+        "sourceMap": true,
+        "declaration": true,
+        "baseUrl": ".",
+        "paths": {
+            "@/*": [
+                "./*"
+            ],
+        },
+        "plugins": [
+            {
+                "transform": "typescript-transform-paths"
+            },
+            {
+                "transform": "typescript-transform-paths",
+                "afterDeclarations": true
+            }
+        ],
+        "outDir": "../dist"
+    }
+}
