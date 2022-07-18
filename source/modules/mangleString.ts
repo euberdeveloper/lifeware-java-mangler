@@ -23,7 +23,7 @@ function mangleNormalOrUnicodeCharacter(character: string): string | null {
     return /^[\d$A-Za-z]$/.test(character) ? null : `_U${character.codePointAt(0)!.toString(16).toUpperCase()}`;
 }
 
-export function mangleCharacter(character: string): string {
+function mangleCharacter(character: string): string {
     checkSingleCharacter(character);
     return mangleSpecalCharacter(character) ?? mangleNormalOrUnicodeCharacter(character) ?? character;
 }
