@@ -20,7 +20,9 @@ function mangleSpecalCharacter(character: string): string | null {
 }
 
 function mangleNormalOrUnicodeCharacter(character: string): string | null {
-    return /^[\d$A-Za-z]$/.test(character) ? null : `_U${character.codePointAt(0)!.toString(16).toUpperCase()}`;
+    return /^[\d$A-Za-z]$/.test(character)
+        ? null
+        : `_X${character.codePointAt(0)!.toString(16).padStart(4, '0').toUpperCase()}X`;
 }
 
 function mangleCharacter(character: string): string {
