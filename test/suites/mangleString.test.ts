@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 
-import { mangleString } from '@src/modules/mangleString';
+import { mangleString } from '@src/modules/mangleString.js';
 
 export default function testMangleString(): void {
     describe('Test @/modules/mangleString', function () {

@@ -1,4 +1,4 @@
-import { mangleString, mangleType } from '.';
+import { mangleString, mangleType } from './index.js';
 
 interface MethodParameterPart {
     type: string;

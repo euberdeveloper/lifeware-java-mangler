@@ -1,4 +1,4 @@
-import { mangleObjectIdentifier, mangleString } from '.';
+import { mangleObjectIdentifier, mangleString } from './index.js';
 
 type PrimitiveType = 'byte' | 'short' | 'int' | 'long' | 'float' | 'double' | 'boolean' | 'char' | 'void';
 
