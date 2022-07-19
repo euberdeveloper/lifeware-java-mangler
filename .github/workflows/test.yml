@@ -19,9 +19,6 @@ jobs:
       - name: Install node dependencies
         run: npm install
         
-      - name: Transpile code
-        run: npm run transpile
-        
       - name: Test and generate coverage report
         run: npm run c8
       
