@@ -46,7 +46,7 @@ export default function testMangleMethodOrConstructor(): void {
             });
 
             it(`Should mangle " java.lang.String getName ();"`, function () {
-                const expected = 'j_m_Vprint_C';
+                const expected = 'j_m_Ljava_Slang_SString_MgetName_C';
                 const result = mangleMethod(' java.lang.String getName ();');
 
                 expect(result).to.equal(expected);
