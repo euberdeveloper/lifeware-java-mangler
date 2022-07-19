@@ -2,7 +2,7 @@
     "compilerOptions": {
         "moduleResolution": "Node16",
         "module": "Node16",
-        "target": "ES5",
+        "target": "ES2015",
         "lib": [
             "ES2022"
         ],
