@@ -1,3 +1,4 @@
+import { InvalidConstructorError, InvalidMethodError } from '@/errors/index.js';
 import { mangleString, mangleType } from './index.js';
 
 interface MethodParameterPart {
@@ -65,7 +66,7 @@ export function mangleMethod(identifier: string): string {
     const parts = getMethodParts(identifier);
 
     if (!parts) {
-        throw new Error(`Could not parse method ${identifier}`);
+        throw new InvalidMethodError(`Could not parse method ${identifier}`);
     }
 
     return (
@@ -80,7 +81,7 @@ export function mangleConstructor(identifier: string): string {
     const parts = getConstructorParts(identifier);
 
     if (!parts) {
-        throw new Error(`Could not parse constructor ${identifier}`);
+        throw new InvalidConstructorError(`Could not parse constructor ${identifier}`);
     }
 
     return 'j_c_' + mangleString(':') + mangleParameters(parts.parameters);
