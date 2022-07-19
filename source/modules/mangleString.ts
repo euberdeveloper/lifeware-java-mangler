@@ -10,9 +10,11 @@ const MAPPER = {
 /* eslint-enable @typescript-eslint/naming-convention */
 
 function checkSingleCharacter(character: string): void {
+    /* c8 ignore start */
     if (character.length !== 1) {
         throw new Error(`Invalid character: ${character}`);
     }
+    /* c8 ignore end */
 }
 
 function mangleSpecalCharacter(character: string): string | null {
