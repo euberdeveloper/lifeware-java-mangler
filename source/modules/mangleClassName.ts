@@ -10,9 +10,9 @@ export function mangleObjectIdentifier(identifier: string): string {
     const classParts = parts.slice(dividerIndex);
     const classString = classParts.join('$');
 
-    return mangleString(packageString) + '/' + mangleString(classString);
+    return mangleString((packageString ? packageString + '/' : '') + classString);
 }
 
 export function mangleClassName(identifier: string): string {
-    return 'JC_' + mangleObjectIdentifier(identifier) + ';';
+    return 'JC_' + mangleObjectIdentifier(identifier);
 }
