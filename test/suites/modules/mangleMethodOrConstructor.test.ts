@@ -1,3 +1,4 @@
+import { InvalidConstructorError, InvalidMethodError } from '@src/errors/index.js';
 import { mangleConstructor, mangleMethod } from '@src/modules/mangleMethodOrConstructor.js';
 
 describe('Test @/modules/mangleMethodOrConstructor', function () {
@@ -150,6 +151,15 @@ describe('Test @/modules/mangleMethodOrConstructor', function () {
             );
 
             expect(result).toEqual(expected);
+        });
+    });
+
+    describe('Errors', function () {
+        it(`Should throw an error for invalid method"`, function () {
+            expect(() => mangleMethod('Bocia')).toThrowError(InvalidMethodError);
+        });
+        it(`Should throw an error for invalid constructor"`, function () {
+            expect(() => mangleConstructor('Bocia')).toThrowError(InvalidConstructorError);
         });
     });
 });

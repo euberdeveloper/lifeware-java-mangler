@@ -24,6 +24,7 @@ const config: Config.InitialOptions = {
             useESM: true
         }
     },
+    coverageProvider: 'v8',
     moduleNameMapper: manageMapper(pathsToModuleNameMapper(tsconfigJson.compilerOptions.paths, { prefix: '<rootDir>/' }) as Record<string, string>),
     transformIgnorePatterns: ['<rootDir>/node_modules/']
 };

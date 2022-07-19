@@ -24,6 +24,22 @@ describe('Test: errors classes', function () {
         expect(error.name).toEqual('InvalidConstructorError');
         expect(error.message).toEqual('MESSAGE');
     });
+    it(`Should properly create a custom with default message InvalidMethodError`, function () {
+        const error = new InvalidMethodError();
+
+        expect(error).toBeInstanceOf(Error);
+        expect(error).toBeInstanceOf(InvalidMethodError);
+        expect(error.name).toEqual('InvalidMethodError');
+        expect(error.message).toEqual('Error on parsing method');
+    });
+    it(`Should properly create a custom with default message InvalidConstructorError`, function () {
+        const error = new InvalidConstructorError();
+
+        expect(error).toBeInstanceOf(Error);
+        expect(error).toBeInstanceOf(InvalidConstructorError);
+        expect(error.name).toEqual('InvalidConstructorError');
+        expect(error.message).toEqual('Error on parsing constructor');
+    });
     it(`Should properly create a custom InvalidMethodError with problematic definition`, function () {
         const error = new InvalidMethodError('MESSAGE', 'DEFINITION');
 
