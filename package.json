@@ -34,7 +34,10 @@
     "docs:html-dev": "typedoc --options typedoc.dev.js",
     "docs": "npm run docs:html && npm run docs:html-dev",
     "test": "jest",
-    "cover": "jest --coverage",
+    "cover:generate": "jest --coverage",
+    "cover:coveralls": "cat ./coverage/lcov.info | coveralls",
+    "cover:codecov": "codecov",
+    "cover": "npm run cover:generate && npm run cover:coveralls && npm run cover:codecov",
     "prepublishOnly": "npm run bundle"
   },
   "repository": {
