@@ -22,13 +22,15 @@ function mangleObjectType(str: string): string {
     return 'L' + mangleObjectIdentifier(str) + ';';
 }
 
-function mangleArray(str: string): string {
+function mangleArray(str: string): [string, string] {
     const count = /\[]/.exec(str)?.length ?? 0;
-    return '['.repeat(count) + str;
+    const arrayPart = '['.repeat(count);
+    const typePart = str.replaceAll('[]', '');
+    return [arrayPart, typePart];
 }
 
 export function mangleType(str: string): string {
-    const arrayMangledString = mangleArray(str);
-    const mangledString = manglePrimitiveType(arrayMangledString) ?? mangleObjectType(arrayMangledString);
-    return mangleString(mangledString);
+    const [arrayPart, typePart] = mangleArray(str);
+    const mangledString = manglePrimitiveType(typePart) ?? mangleObjectType(typePart);
+    return mangleString(arrayPart + mangledString);
 }
