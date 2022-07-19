@@ -11,6 +11,11 @@ interface MethodParts {
     parameters: MethodParameterPart[];
 }
 
+interface ConstructorParts {
+    identifier: string;
+    parameters: MethodParameterPart[];
+}
+
 function getParameterParts(parameters: string): MethodParameterPart[] {
     const parametersArray = parameters.split(',').filter(param => !!param);
 
@@ -37,6 +42,21 @@ function getMethodParts(identifier: string): MethodParts | null {
     };
 }
 
+function getConstructorParts(identifier: string): ConstructorParts | null {
+    const regexResult = /^\s*(?<identifier>\w+)\s*\(\s*(?<parameters>(\s*[\w.]+(\[])*\s+\w+\s*,?)*)\)\s*;?\s*$/.exec(
+        identifier
+    );
+
+    if (!regexResult?.groups) {
+        return null;
+    }
+
+    return {
+        identifier: regexResult.groups.identifier,
+        parameters: getParameterParts(regexResult.groups.parameters)
+    };
+}
+
 function mangleParameters(parameters: MethodParameterPart[]): string {
     return parameters.map(parameter => mangleType(parameter.type) + ':').join('');
 }
@@ -57,10 +77,10 @@ export function mangleMethod(identifier: string): string {
 }
 
 export function mangleConstructor(identifier: string): string {
-    const parts = getMethodParts(identifier);
+    const parts = getConstructorParts(identifier);
 
     if (!parts) {
-        throw new Error(`Could not parse method ${identifier}`);
+        throw new Error(`Could not parse constructor ${identifier}`);
     }
 
     return 'j_c_' + mangleString(':') + mangleParameters(parts.parameters);
