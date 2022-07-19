@@ -10,6 +10,7 @@ function manageMapper(mapper: Record<string, string>): Record<string, string> {
    for (const key in mapper) {
       newMapper[manageKey(key)] = mapper[key];
    }
+   newMapper['^\.\/(.*)\\.js$'] = './$1';
    return newMapper;
 }
 

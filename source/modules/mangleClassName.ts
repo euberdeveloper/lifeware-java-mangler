@@ -1,4 +1,4 @@
-import { mangleString } from '@/modules/index.js';
+import { mangleString } from './index.js';
 
 export function mangleObjectIdentifier(identifier: string): string {
     const parts = identifier.split('.');

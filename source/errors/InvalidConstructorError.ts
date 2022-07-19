@@ -1,4 +1,4 @@
-import { LifewareJavaManglerError } from '@/errors/LifewareJavaManglerError.js';
+import { LifewareJavaManglerError } from './LifewareJavaManglerError.js';
 
 /**
  * The [[LifewareJavaManglerError]] that happens because the constructor to mangle is not valid
