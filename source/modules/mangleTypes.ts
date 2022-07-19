@@ -23,7 +23,7 @@ function mangleObjectType(str: string): string {
 }
 
 function mangleArray(str: string): [string, string] {
-    const count = /\[]/.exec(str)?.length ?? 0;
+    const count = str.match(/\[]/g)?.length ?? 0;
     const arrayPart = '['.repeat(count);
     const typePart = str.replaceAll('[]', '');
     return [arrayPart, typePart];
