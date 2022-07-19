@@ -12,7 +12,7 @@ interface MethodParts {
 }
 
 function getParameterParts(parameters: string): MethodParameterPart[] {
-    const parametersArray = parameters.split(',');
+    const parametersArray = parameters.split(',').filter(param => !!param);
 
     return parametersArray.map(parameter => {
         const regexResult = /^\s*(?<type>\w+)\s+(?<identifier>\w+)\s*,?/.exec(parameter);
@@ -22,7 +22,7 @@ function getParameterParts(parameters: string): MethodParameterPart[] {
 
 function getMethodParts(identifier: string): MethodParts | null {
     const regexResult =
-        /^\s*(?<returnType>\w+)\s+(?<identifier>\w+)\s*\((?<parameters>(\s*\w+\s+\w+\s*,?)*)\)\s*;\s*$/.exec(
+        /^\s*(?<returnType>\w+)\s+(?<identifier>\w+)\s*\(\s*(?<parameters>(\s*\w+\s+\w+\s*,?)*)\)\s*;?\s*$/.exec(
             identifier
         );
 
