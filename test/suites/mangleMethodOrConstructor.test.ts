@@ -60,6 +60,56 @@ export default function testMangleMethodOrConstructor(): void {
                     expect(result).to.equal(expected);
                 });
             });
+
+            describe('With parameters', function () {
+                it(`Should mangle "void print(boolean show);"`, function () {
+                    const expected = 'j_m_Vprint_CZ:';
+                    const result = mangleMethod('void print(boolean show);');
+
+                    expect(result).to.equal(expected);
+                });
+
+                it(`Should mangle " void print(     boolean     show     );"`, function () {
+                    const expected = 'j_m_Vprint_CZ:';
+                    const result = mangleMethod(' void print(     boolean     show     );');
+
+                    expect(result).to.equal(expected);
+                });
+
+                it(`Should mangle "void print(boolean show, int bobbo, float coccoB3ll_o);"`, function () {
+                    const expected = 'j_m_Vprint_CZ:I:F:';
+                    const result = mangleMethod('void print(boolean show, int bobbo, float coccoB3ll_o);');
+
+                    expect(result).to.equal(expected);
+                });
+
+                it(`Should mangle "void print(boolean show, java.lang.Pippo.Pluto.Paperino bobbo, float coccoB3ll_o);"`, function () {
+                    const expected = 'j_m_Vprint_CZ:Ljava_Slang_SPippo_DPluto_DPaperino_M:F:';
+                    const result = mangleMethod(
+                        'void print(boolean show, java.lang.Pippo.Pluto.Paperino bobbo, float coccoB3ll_o);'
+                    );
+
+                    expect(result).to.equal(expected);
+                });
+
+                it(`Should mangle "String some_method_name(int index, String[] options)"`, function () {
+                    const expected = 'j_m_Ljava_Slang_SString_Msome__method__name_CI:_BLjava_Slang_SString_M:';
+                    const result = mangleMethod(
+                        'java.lang.String some_method_name(int index, java.lang.String[] options)'
+                    );
+
+                    expect(result).to.equal(expected);
+                });
+
+                it(`Should mangle "String some_method_name(int index, String[][] options)"`, function () {
+                    const expected = 'j_m_Ljava_Slang_SString_Msome__method__name_CI:_B_BLjava_Slang_SString_M:';
+                    const result = mangleMethod(
+                        'java.lang.String some_method_name(int index, java.lang.String[][] options)'
+                    );
+
+                    expect(result).to.equal(expected);
+                });
+            });
         });
 
         describe('Constructors', function () {});
