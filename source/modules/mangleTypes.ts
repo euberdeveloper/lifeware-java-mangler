@@ -1,6 +1,6 @@
 import { mangleObjectIdentifier, mangleString } from './index.js';
 
-type PrimitiveType = 'byte' | 'short' | 'int' | 'long' | 'float' | 'double' | 'boolean' | 'char' | 'void';
+export type PrimitiveType = 'byte' | 'short' | 'int' | 'long' | 'float' | 'double' | 'boolean' | 'char' | 'void';
 
 const TYPES_MAPPER: Record<PrimitiveType, string> = {
     byte: 'B',

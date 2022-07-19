@@ -1,1 +1,1 @@
-export { mangleClassName, mangleConstructor, mangleMethod } from '@/modules/index.js';
+export { mangleClassName, mangleConstructor, mangleMethod, mangleType, PrimitiveType } from '@/modules/index.js';
