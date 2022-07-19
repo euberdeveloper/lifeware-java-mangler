@@ -1,4 +1,4 @@
-export * from './LifewareJavaManglerError.js';
+export * from '@/errors/LifewareJavaManglerError.js';
 
-export * from './InvalidMethodError.js';
-export * from './InvalidConstructorError.js';
+export * from '@/errors/InvalidMethodError.js';
+export * from '@/errors/InvalidConstructorError.js';

@@ -1,5 +1,5 @@
 import { InvalidConstructorError, InvalidMethodError } from '@/errors/index.js';
-import { mangleString, mangleType } from './index.js';
+import { mangleString, mangleType } from '@/modules/index.js';
 
 interface MethodParameterPart {
     type: string;
