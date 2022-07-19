@@ -15,14 +15,14 @@ function getParameterParts(parameters: string): MethodParameterPart[] {
     const parametersArray = parameters.split(',').filter(param => !!param);
 
     return parametersArray.map(parameter => {
-        const regexResult = /^\s*(?<type>[\w.]+)\s+(?<identifier>\w+)\s*,?/.exec(parameter);
+        const regexResult = /^\s*(?<type>[\w.]+[[\]]*)\s+(?<identifier>\w+)\s*,?/.exec(parameter);
         return regexResult!.groups as unknown as MethodParameterPart;
     });
 }
 
 function getMethodParts(identifier: string): MethodParts | null {
     const regexResult =
-        /^\s*(?<returnType>[\w.]+)\s+(?<identifier>\w+)\s*\(\s*(?<parameters>(\s*\w+\s+\w+\s*,?)*)\)\s*;?\s*$/.exec(
+        /^\s*(?<returnType>[\w.]+(\[])*)\s+(?<identifier>\w+)\s*\(\s*(?<parameters>(\s*[\w.]+(\[])*\s+\w+\s*,?)*)\)\s*;?\s*$/.exec(
             identifier
         );
 
@@ -37,6 +37,10 @@ function getMethodParts(identifier: string): MethodParts | null {
     };
 }
 
+function mangleParameters(parameters: MethodParameterPart[]): string {
+    return parameters.map(parameter => mangleType(parameter.type) + ':').join('');
+}
+
 export function mangleMethod(identifier: string): string {
     const parts = getMethodParts(identifier);
 
@@ -48,9 +52,7 @@ export function mangleMethod(identifier: string): string {
         'j_m_' +
         mangleType(parts.returnType) +
         mangleString(`${parts.identifier}:`) +
-        parts.parameters
-            .map(parameter => mangleType(parameter.type) + mangleString(`${parameter.identifier}:`))
-            .join(' ')
+        mangleParameters(parts.parameters)
     );
 }
 
@@ -61,11 +63,5 @@ export function mangleConstructor(identifier: string): string {
         throw new Error(`Could not parse method ${identifier}`);
     }
 
-    return (
-        'j_c_' +
-        mangleString(':') +
-        parts.parameters
-            .map(parameter => mangleType(parameter.type) + mangleString(`${parameter.identifier}:`))
-            .join(' ')
-    );
+    return 'j_c_' + mangleString(':') + mangleParameters(parts.parameters);
 }
