@@ -112,6 +112,43 @@ export default function testMangleMethodOrConstructor(): void {
             });
         });
 
-        describe('Constructors', function () {});
+        describe('Constructors', function () {
+            it(`Should mangle "String();"`, function () {
+                const expected = 'j_c__C';
+                const result = mangleConstructor('String();');
+
+                expect(result).to.equal(expected);
+            });
+
+            it(`Should mangle "     Gaibbo  (       ) ; "`, function () {
+                const expected = 'j_c__C';
+                const result = mangleConstructor('     Gaibbo  (       ) ; ');
+
+                expect(result).to.equal(expected);
+            });
+
+            it(`Should mangle "     Gaibbo  (       )  "`, function () {
+                const expected = 'j_c__C';
+                const result = mangleConstructor('     Gaibbo  (       )  ');
+
+                expect(result).to.equal(expected);
+            });
+
+            it(`Should mangle "MyClass(int index, String[][] options)"`, function () {
+                const expected = 'j_m_Ljava_Slang_SString_Msome__method__name_CI:_B_BLjava_Slang_SString_M:';
+                const result = mangleConstructor('MyClass(int index, java.lang.String[][] options)');
+
+                expect(result).to.equal(expected);
+            });
+
+            it(`Should mangle "Caccu(boolean show, java.lang.Pippo.Pluto.Paperino bobbo, float coccoB3ll_o);"`, function () {
+                const expected = 'j_m_Vprint_CZ:Ljava_Slang_SPippo_DPluto_DPaperino_M:F:';
+                const result = mangleConstructor(
+                    'Caccu(boolean show, java.lang.Pippo.Pluto.Paperino bobbo, float coccoB3ll_o);'
+                );
+
+                expect(result).to.equal(expected);
+            });
+        });
     });
 }
