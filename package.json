@@ -1,6 +1,6 @@
 {
   "name": "lifeware-java-mangler",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "An npm module that allows mangling Java identifiers (e.g. classes or methods identifiers) to JVM mangled names. Used for the Smaltalk/Java binding at Lifeware SA",
   "exports": "./bundled/index.js",
   "types": "./bundled/index.d.ts",
