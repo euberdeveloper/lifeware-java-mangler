@@ -5,7 +5,7 @@
 [![codecov](https://codecov.io/gh/euberdeveloper/lifeware-java-mangler/branch/main/graph/badge.svg?token=4YW49XC338)](https://codecov.io/gh/euberdeveloper/lifeware-java-mangler)
 [![Known Vulnerabilities](https://snyk.io/test/github/euberdeveloper/lifeware-java-mangler/badge.svg?targetFile=package.json)](https://snyk.io/test/github/euberdeveloper/lifeware-java-mangler?targetFile=package.json)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
-[![License](https://img.shields.io/npm/l/lifeware-java-mangler.svg)](https://github.com/euberdeveloper/lifeware-java-mangler/blob/master/LICENSE)
+[![License](https://img.shields.io/npm/l/lifeware-java-mangler.svg)](https://github.com/euberdeveloper/lifeware-java-mangler/blob/main/LICENSE)
 [![GitHub issues](https://img.shields.io/github/issues/euberdeveloper/lifeware-java-mangler.svg)](https://github.com/euberdeveloper/lifeware-java-mangler/issues)
 [![GitHub stars](https://img.shields.io/github/stars/euberdeveloper/lifeware-java-mangler.svg)](https://github.com/euberdeveloper/lifeware-java-mangler/stargazers)
 ![npm](https://img.shields.io/npm/v/lifeware-java-mangler.svg)
