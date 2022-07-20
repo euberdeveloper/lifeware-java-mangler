@@ -22,5 +22,5 @@ jobs:
       - name: Transpile code
         run: npm run transpile
         
-      - name: Bundle
-        run: npm run bundle
+      # - name: Bundle
+      #   run: npm run bundle
