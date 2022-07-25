@@ -1,4 +1,3 @@
-import { InvalidConstructorError /*, InvalidMethodError */ } from '../../errors/index.js';
 import {
     getConstructorParts,
     // getMethodParts,
@@ -36,10 +35,6 @@ function mangleSmalltalkJVMArguments(parameters: SignatureParameterPart[]): stri
 
 export function mangleConstructorDefinition(identifier: string): string {
     const parts = getConstructorParts(identifier);
-
-    if (!parts) {
-        throw new InvalidConstructorError(`Could not parse constructor ${identifier}`);
-    }
 
     const signatureWithoutParameters = 'j_c_' + mangleString(':');
     const smalltalkSignature = signatureWithoutParameters + mangleParameters(parts.parameters, true);

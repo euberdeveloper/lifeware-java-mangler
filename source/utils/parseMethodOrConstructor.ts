@@ -1,3 +1,4 @@
+import { InvalidConstructorError, InvalidMethodError } from '../errors/index.js';
 import { mangleType } from '../modules/index.js';
 
 export interface SignatureParameterPart {
@@ -25,14 +26,14 @@ function getParameterParts(parameters: string): SignatureParameterPart[] {
     });
 }
 
-export function getMethodParts(identifier: string): MethodParts | null {
+export function getMethodParts(identifier: string): MethodParts {
     const regexResult =
         /^\s*(?<returnType>[\w.]+(\[])*)\s+(?<identifier>\w+)\s*\(\s*(?<parameters>(\s*[\w.]+(\[])*\s+\w+\s*,?)*)\)\s*;?\s*$/.exec(
             identifier
         );
 
     if (!regexResult?.groups) {
-        return null;
+        throw new InvalidMethodError(`Could not parse method ${identifier}`);
     }
 
     return {
@@ -42,13 +43,13 @@ export function getMethodParts(identifier: string): MethodParts | null {
     };
 }
 
-export function getConstructorParts(identifier: string): ConstructorParts | null {
+export function getConstructorParts(identifier: string): ConstructorParts {
     const regexResult = /^\s*(?<identifier>\w+)\s*\(\s*(?<parameters>(\s*[\w.]+(\[])*\s+\w+\s*,?)*)\)\s*;?\s*$/.exec(
         identifier
     );
 
     if (!regexResult?.groups) {
-        return null;
+        throw new InvalidConstructorError(`Could not parse constructor ${identifier}`);
     }
 
     return {
