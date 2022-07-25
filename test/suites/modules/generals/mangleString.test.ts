@@ -1,6 +1,6 @@
 import { mangleString } from '@src/modules/general/mangleString.js';
 
-describe('Test @/modules/mangleString', function () {
+describe('Test @/modules/general/mangleString', function () {
     describe('Special characters', function () {
         it(`Should mangle correctly an underscore`, function () {
             const expected = '__';

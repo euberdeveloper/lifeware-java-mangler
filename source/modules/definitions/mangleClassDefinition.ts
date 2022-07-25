@@ -1,6 +1,6 @@
 import { generateMergeOptions } from '../../utils/options.js';
 
-import { mangleClassName } from '../index.js';
+import { mangleClassIdentifier } from '../index.js';
 
 export interface MangleClassDefinitionOptionsInternal {
     package: string;
@@ -27,8 +27,8 @@ const mergeOptions = generateMergeOptions<MangleClassDefinitionOptionsInternal, 
 
 export function mangleClassDefinition(identifier: string, options: MangleClassDefinitionOptions = {}): string {
     const opts = mergeOptions(options);
-    return `Smalltalk.${opts.package} defineClass: #${mangleClassName(identifier)}
-	superclass: #{${opts.superclassPackage}.${mangleClassName(opts.superclass)}}
+    return `Smalltalk.${opts.package} defineClass: #${mangleClassIdentifier(identifier)}
+	superclass: #{${opts.superclassPackage}.${mangleClassIdentifier(opts.superclass)}}
 	indexedType: #none
 	private: false
 	instanceVariableNames: '${opts.istanceVariableNames.join(', ')}'

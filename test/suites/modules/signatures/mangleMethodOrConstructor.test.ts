@@ -1,7 +1,7 @@
 import { InvalidConstructorError, InvalidMethodError } from '@src/errors/index.js';
 import { mangleConstructor, mangleMethod } from '@src/modules/signatures/mangleMethodOrConstructor.js';
 
-describe('Test @/modules/mangleMethodOrConstructor', function () {
+describe('Test @/modules/signatures/mangleMethodOrConstructor', function () {
     describe('Methods', function () {
         describe('Without parameters', function () {
             it(`Should mangle "void print();"`, function () {

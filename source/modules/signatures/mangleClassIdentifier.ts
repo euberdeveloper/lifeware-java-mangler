@@ -13,6 +13,6 @@ export function mangleObjectIdentifier(identifier: string): string {
     return (packageString ? packageString + '/' : '') + classString;
 }
 
-export function mangleClassName(identifier: string): string {
+export function mangleClassIdentifier(identifier: string): string {
     return 'JC_' + mangleString(mangleObjectIdentifier(identifier));
 }

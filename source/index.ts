@@ -1,5 +1,5 @@
 export {
-    mangleClassName,
+    mangleClassIdentifier as mangleClassName,
     mangleConstructor,
     mangleMethod,
     mangleType,

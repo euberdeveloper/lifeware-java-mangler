@@ -1,6 +1,6 @@
 import { mangleType, PrimitiveType } from '@src/modules/general/mangleTypes.js';
 
-describe('Test @/modules/mangleTypes', function () {
+describe('Test @/modules/general/mangleTypes', function () {
     describe('Primitive types', function () {
         it(`Should mangle correctly a boolean`, function () {
             const expected = 'Z';
