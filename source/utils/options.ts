@@ -2,9 +2,9 @@ export function generateMergeOptions<Internal extends Record<string, any>, Expor
     defaultOptions: Internal
 ): (options: Exported) => Internal {
     return (options: Exported) => {
-        const result: Internal = { ...defaultOptions };
-        for (const key in options) {
-            result[key] = options[key] ?? result[key];
+        const result: Internal = {} as Internal;
+        for (const key in defaultOptions) {
+            result[key] = options[key] ?? defaultOptions[key];
         }
         return result;
     };

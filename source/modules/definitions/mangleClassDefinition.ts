@@ -5,6 +5,7 @@ import { mangleClassName } from '../index.js';
 export interface MangleClassDefinitionOptionsInternal {
     package: string;
     superclass: string;
+    superclassPackage: string;
     istanceVariableNames: string[];
     classInstanceVariableNames: string[];
     category: string;
@@ -14,6 +15,7 @@ export type MangleClassDefinitionOptions = Partial<MangleClassDefinitionOptionsI
 export const DEFAULT_MANGLE_CLASS_DEFINITION_OPTIONS: MangleClassDefinitionOptionsInternal = {
     package: 'Lifeware',
     superclass: 'java.lang.Object',
+    superclassPackage: 'Lifeware',
     istanceVariableNames: [],
     classInstanceVariableNames: [],
     category: 'java-api'
@@ -23,10 +25,10 @@ const mergeOptions = generateMergeOptions<MangleClassDefinitionOptionsInternal, 
     DEFAULT_MANGLE_CLASS_DEFINITION_OPTIONS
 );
 
-export function mangleClassDefinition(identifier: string, options: MangleClassDefinitionOptions): string {
+export function mangleClassDefinition(identifier: string, options: MangleClassDefinitionOptions = {}): string {
     const opts = mergeOptions(options);
     return `Smalltalk.${opts.package} defineClass: #${mangleClassName(identifier)}
-	superclass: #{${opts.package}.${mangleClassName(opts.superclass)}}
+	superclass: #{${opts.superclassPackage}.${mangleClassName(opts.superclass)}}
 	indexedType: #none
 	private: false
 	instanceVariableNames: '${opts.istanceVariableNames.join(', ')}'

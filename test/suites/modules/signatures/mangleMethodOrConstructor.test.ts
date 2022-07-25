@@ -1,5 +1,5 @@
 import { InvalidConstructorError, InvalidMethodError } from '@src/errors/index.js';
-import { mangleConstructor, mangleMethod } from '@src/modules/mangleMethodOrConstructor.js';
+import { mangleConstructor, mangleMethod } from '@src/modules/signatures/mangleMethodOrConstructor.js';
 
 describe('Test @/modules/mangleMethodOrConstructor', function () {
     describe('Methods', function () {

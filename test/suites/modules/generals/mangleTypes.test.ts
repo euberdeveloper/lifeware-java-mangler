@@ -1,4 +1,4 @@
-import { mangleType, PrimitiveType } from '@src/modules/mangleTypes.js';
+import { mangleType, PrimitiveType } from '@src/modules/general/mangleTypes.js';
 
 describe('Test @/modules/mangleTypes', function () {
     describe('Primitive types', function () {

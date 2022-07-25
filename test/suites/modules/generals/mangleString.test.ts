@@ -1,4 +1,4 @@
-import { mangleString } from '@src/modules/mangleString.js';
+import { mangleString } from '@src/modules/general/mangleString.js';
 
 describe('Test @/modules/mangleString', function () {
     describe('Special characters', function () {

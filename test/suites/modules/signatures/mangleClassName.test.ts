@@ -1,4 +1,4 @@
-import { mangleClassName } from '@src/modules/mangleClassName.js';
+import { mangleClassName } from '@src/modules/signatures/mangleClassName.js';
 
 describe('Test @/modules/mangleClassName', function () {
     it(`Should mangle correctly a class name without package "MyClass"`, function () {
