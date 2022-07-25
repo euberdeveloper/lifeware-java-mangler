@@ -1,10 +1,22 @@
 import {
     getConstructorParts,
-    // getMethodParts,
+    getMethodParts,
     mangleParameters,
     SignatureParameterPart
 } from '../../utils/parseMethodOrConstructor.js';
-import { manglePrimitiveType, mangleString } from '../index.js';
+import { mangleClassIdentifier, manglePrimitiveType, mangleString, mangleType, PrimitiveType } from '../index.js';
+
+const RETURN_TYPE_MAPPER: Record<PrimitiveType, string> = {
+    byte: 'byteResult',
+    short: 'shortResult',
+    int: 'intResult',
+    long: 'longResult',
+    float: 'floatResult',
+    double: 'doubleResult',
+    boolean: 'booleanResult',
+    char: 'charResult',
+    void: ''
+};
 
 function mangleSmalltalkJVMArguments(parameters: SignatureParameterPart[]): string {
     const separator = '\n\t\t'.replace(/\t/g, '    ');
@@ -19,30 +31,39 @@ function mangleSmalltalkJVMArguments(parameters: SignatureParameterPart[]): stri
         : '';
 }
 
-// export function mangleMethodDefinition(identifier: string): string {
-//     const parts = getMethodParts(identifier);
+function getHandleResult(type: string): string {
+    return RETURN_TYPE_MAPPER[type] ?? `objectResultOn: ${mangleClassIdentifier(type)}`;
+}
 
-//     if (!parts) {
-//         throw new InvalidMethodError(`Could not parse method ${identifier}`);
-//     }
+export function mangleMethodDefinition(identifier: string): string {
+    const parts = getMethodParts(identifier);
 
-//     const signature =
-//         'j_m_' +
-//         mangleType(parts.returnType) +
-//         mangleString(`${parts.identifier}:`) +
-//         mangleParameters(parts.parameters);
-// }
+    const signatureWithoutParameters = 'j_m_' + mangleType(parts.returnType) + mangleString(`${parts.identifier}:`);
+    const smalltalkSignature = signatureWithoutParameters + mangleParameters(parts.parameters, true);
+    const mangledMethodSignature = signatureWithoutParameters + mangleParameters(parts.parameters, false);
+    const mangledJvmArguments = mangledMethodSignature + mangleSmalltalkJVMArguments(parts.parameters);
+    const mangledCallMethod = '$' + (manglePrimitiveType(parts.returnType) ?? 'L').toLocaleLowerCase();
+    const mangledHandledResult = getHandleResult(parts.returnType);
+    const bodyWithoutReturn = `JVM_Bridge default
+    callMethod: ${mangledCallMethod}
+    jobj: self
+    mangledName: #${mangledMethodSignature}${mangledJvmArguments}`;
+    const bodyWithReturn =
+        parts.returnType === 'void' ? bodyWithoutReturn : `^(${bodyWithoutReturn}) ${mangledHandledResult}`;
+    return `${smalltalkSignature}
+    ${bodyWithReturn}`;
+}
 
 export function mangleConstructorDefinition(identifier: string): string {
     const parts = getConstructorParts(identifier);
 
     const signatureWithoutParameters = 'j_c_' + mangleString(':');
     const smalltalkSignature = signatureWithoutParameters + mangleParameters(parts.parameters, true);
-    const mangledMethodSignature = signatureWithoutParameters + mangleParameters(parts.parameters, false);
+    const mangledConstructorSignature = signatureWithoutParameters + mangleParameters(parts.parameters, false);
     const mangledJvmArguments = mangleSmalltalkJVMArguments(parts.parameters);
 
     return `${smalltalkSignature}
     ^JVM_Bridge default
         callConstructor: self
-        mangledName: #${mangledMethodSignature}${mangledJvmArguments}`;
+        mangledName: #${mangledConstructorSignature}${mangledJvmArguments}`;
 }

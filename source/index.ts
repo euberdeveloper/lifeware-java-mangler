@@ -8,6 +8,7 @@ export {
     MangleClassDefinitionOptions,
     MangleClassDefinitionOptionsInternal,
     DEFAULT_MANGLE_CLASS_DEFINITION_OPTIONS,
-    mangleConstructorDefinition
+    mangleConstructorDefinition,
+    mangleMethodDefinition
 } from './modules/index.js';
 export * from './errors/index.js';
