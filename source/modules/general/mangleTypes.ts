@@ -14,7 +14,7 @@ const TYPES_MAPPER: Record<PrimitiveType, string> = {
     void: 'V'
 };
 
-function manglePrimitiveType(str: string): string | null {
+export function manglePrimitiveType(str: string): string | null {
     return TYPES_MAPPER[str] ?? null;
 }
 

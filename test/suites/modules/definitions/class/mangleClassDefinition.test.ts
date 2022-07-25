@@ -4,14 +4,14 @@ import firstExpected from './expecteds/first.expected.js';
 import secondExpected from './expecteds/second.expected.js';
 
 describe('Test @/modules/definitions/mangleClassDefinition', function () {
-    it(`Should mangle correctly a class name "java.lang.MyClass" with default options`, function () {
+    it(`Should mangle correctly a class definition "java.lang.MyClass" with default options`, function () {
         const expected = firstExpected;
         const result = mangleClassDefinition('java.lang.MyClass');
 
         expect(result).toEqual(expected);
     });
 
-    it(`Should mangle correctly a class name "java.lang.MyClass" with custom options`, function () {
+    it(`Should mangle correctly a class definition "java.lang.MyClass" with custom options`, function () {
         const expected = secondExpected;
         const result = mangleClassDefinition('java.lang.MyClass', {
             package: 'Burundu',

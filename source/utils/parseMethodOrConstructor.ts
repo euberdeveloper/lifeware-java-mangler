@@ -1,4 +1,6 @@
-export interface MethodParameterPart {
+import { mangleType } from '../modules/index.js';
+
+export interface SignatureParameterPart {
     type: string;
     identifier: string;
 }
@@ -6,20 +8,20 @@ export interface MethodParameterPart {
 export interface MethodParts {
     returnType: string;
     identifier: string;
-    parameters: MethodParameterPart[];
+    parameters: SignatureParameterPart[];
 }
 
 export interface ConstructorParts {
     identifier: string;
-    parameters: MethodParameterPart[];
+    parameters: SignatureParameterPart[];
 }
 
-function getParameterParts(parameters: string): MethodParameterPart[] {
+function getParameterParts(parameters: string): SignatureParameterPart[] {
     const parametersArray = parameters.split(',').filter(param => !!param);
 
     return parametersArray.map(parameter => {
         const regexResult = /^\s*(?<type>[\w.]+[[\]]*)\s+(?<identifier>\w+)\s*,?/.exec(parameter);
-        return regexResult!.groups as unknown as MethodParameterPart;
+        return regexResult!.groups as unknown as SignatureParameterPart;
     });
 }
 
@@ -53,4 +55,10 @@ export function getConstructorParts(identifier: string): ConstructorParts | null
         identifier: regexResult.groups.identifier,
         parameters: getParameterParts(regexResult.groups.parameters)
     };
+}
+
+export function mangleParameters(parameters: SignatureParameterPart[], withIdentifiers: boolean): string {
+    return parameters
+        .map(parameter => mangleType(parameter.type) + ':' + (withIdentifiers ? ` ${parameter.identifier}` : ''))
+        .join('');
 }
