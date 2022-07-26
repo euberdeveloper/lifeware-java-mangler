@@ -1,3 +1,4 @@
+import { InvalidTypeError } from '@src/errors/index.js';
 import { PrimitiveType } from '@src/types/index.js';
 import { mangleType } from '@src/modules/general/mangleTypes.js';
 
@@ -233,6 +234,12 @@ describe('Test @/modules/general/mangleTypes', function () {
 
                 expect(result).toEqual(expected);
             });
+        });
+    });
+
+    describe('Errors', function () {
+        it(`Should throw an error for invalid type"`, function () {
+            expect(() => mangleType('£$%&')).toThrowError(InvalidTypeError);
         });
     });
 });
