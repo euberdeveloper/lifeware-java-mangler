@@ -1,10 +1,11 @@
+import { PrimitiveType } from '../../types/index.js';
 import {
     getConstructorParts,
     getMethodParts,
     mangleParameters,
     SignatureParameterPart
 } from '../../utils/parseMethodOrConstructor.js';
-import { mangleClassIdentifier, manglePrimitiveType, mangleString, mangleType, PrimitiveType } from '../index.js';
+import { mangleClassIdentifier, manglePrimitiveType, mangleString, mangleType } from '../index.js';
 
 const RETURN_TYPE_MAPPER: Record<PrimitiveType, string> = {
     byte: 'byteResult',

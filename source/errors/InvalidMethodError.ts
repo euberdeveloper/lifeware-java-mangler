@@ -1,7 +1,7 @@
 import { LifewareJavaManglerError } from './LifewareJavaManglerError.js';
 
 /**
- * The [[LifewareJavaManglerError]] that happens because the method to mangle is not valid
+ * The [[InvalidMethodError]] that happens because the method to mangle is not valid
  */
 export class InvalidMethodError extends LifewareJavaManglerError {
     private static readonly DEFAULT_MESSAGE = 'Error on parsing method';

@@ -6,3 +6,5 @@ export * from './signatures/mangleMethodOrConstructor.js';
 
 export * from './definitions/mangleClassDefinition.js';
 export * from './definitions/mangleMethodOrConstructorDefinition.js';
+
+export * from './validation/validateTypes.js';

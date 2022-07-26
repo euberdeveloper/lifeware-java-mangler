@@ -1,7 +1,7 @@
 import { LifewareJavaManglerError } from './LifewareJavaManglerError.js';
 
 /**
- * The [[LifewareJavaManglerError]] that happens because the constructor to mangle is not valid
+ * The [[InvalidConstructorError]] that happens because the constructor to mangle is not valid
  */
 export class InvalidConstructorError extends LifewareJavaManglerError {
     private static readonly DEFAULT_MESSAGE = 'Error on parsing constructor';

@@ -1,6 +1,7 @@
+import { PrimitiveType } from '../../types/index.js';
+import { InvalidTypeError } from '../../errors/index.js';
+import { validateType } from '../validation/validateTypes.js';
 import { mangleObjectIdentifier, mangleString } from '../index.js';
-
-export type PrimitiveType = 'byte' | 'short' | 'int' | 'long' | 'float' | 'double' | 'boolean' | 'char' | 'void';
 
 const TYPES_MAPPER: Record<PrimitiveType, string> = {
     byte: 'B',
@@ -30,6 +31,10 @@ function mangleArray(str: string): [string, string] {
 }
 
 export function mangleType(str: string): string {
+    if (!validateType(str)) {
+        throw new InvalidTypeError(undefined, str);
+    }
+
     const [arrayPart, typePart] = mangleArray(str);
     const mangledString = manglePrimitiveType(typePart) ?? mangleObjectType(typePart);
     return mangleString(arrayPart + mangledString);

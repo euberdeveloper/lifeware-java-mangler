@@ -33,7 +33,7 @@ export function getMethodParts(identifier: string): MethodParts {
         );
 
     if (!regexResult?.groups) {
-        throw new InvalidMethodError(`Could not parse method ${identifier}`);
+        throw new InvalidMethodError(undefined, identifier);
     }
 
     return {
@@ -49,7 +49,7 @@ export function getConstructorParts(identifier: string): ConstructorParts {
     );
 
     if (!regexResult?.groups) {
-        throw new InvalidConstructorError(`Could not parse constructor ${identifier}`);
+        throw new InvalidConstructorError(undefined, identifier);
     }
 
     return {
