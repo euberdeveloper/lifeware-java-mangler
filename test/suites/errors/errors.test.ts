@@ -1,4 +1,9 @@
-import { InvalidConstructorError, InvalidMethodError, LifewareJavaManglerError } from '@src/errors/index.js';
+import {
+    InvalidConstructorError,
+    InvalidMethodError,
+    LifewareJavaManglerError,
+    InvalidTypeError
+} from '@src/errors/index.js';
 
 describe('Test: errors classes', function () {
     it(`Should properly create a default LifewareJavaManglerError`, function () {
@@ -57,5 +62,14 @@ describe('Test: errors classes', function () {
         expect(error.name).toEqual('InvalidConstructorError');
         expect(error.message).toEqual('MESSAGE');
         expect(error.definition).toEqual('DEFINITION');
+    });
+
+    it(`Should properly create a custom InvalidTypeError`, function () {
+        const error = new InvalidTypeError('MESSAGE');
+
+        expect(error).toBeInstanceOf(Error);
+        expect(error).toBeInstanceOf(InvalidTypeError);
+        expect(error.name).toEqual('InvalidTypeError');
+        expect(error.message).toEqual('MESSAGE');
     });
 });
