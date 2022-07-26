@@ -72,4 +72,14 @@ describe('Test: errors classes', function () {
         expect(error.name).toEqual('InvalidTypeError');
         expect(error.message).toEqual('MESSAGE');
     });
+
+    it(`Should properly create a custom InvalidTypeError with problematic definition`, function () {
+        const error = new InvalidTypeError('MESSAGE', 'TYPE');
+
+        expect(error).toBeInstanceOf(Error);
+        expect(error).toBeInstanceOf(InvalidTypeError);
+        expect(error.name).toEqual('InvalidTypeError');
+        expect(error.message).toEqual('MESSAGE');
+        expect(error.definition).toEqual('TYPE');
+    });
 });
