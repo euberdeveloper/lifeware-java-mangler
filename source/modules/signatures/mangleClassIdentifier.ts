@@ -1,4 +1,5 @@
-import { mangleString } from '../index.js';
+import { InvalidClassIdentifierError } from '../../errors/index.js';
+import { mangleString, validateClassIdentifier } from '../index.js';
 
 export function mangleObjectIdentifier(identifier: string): string {
     const parts = identifier.split('.');
@@ -14,5 +15,9 @@ export function mangleObjectIdentifier(identifier: string): string {
 }
 
 export function mangleClassIdentifier(identifier: string): string {
+    if (!validateClassIdentifier(identifier)) {
+        throw new InvalidClassIdentifierError(undefined, identifier);
+    }
+
     return 'JC_' + mangleString(mangleObjectIdentifier(identifier));
 }

@@ -1,6 +1,7 @@
+import { InvalidClassIdentifierError } from '../../errors/index.js';
 import { generateMergeOptions } from '../../utils/options.js';
 
-import { mangleClassIdentifier } from '../index.js';
+import { mangleClassIdentifier, validateClassIdentifier } from '../index.js';
 
 export interface MangleClassDefinitionOptionsInternal {
     package: string;
@@ -26,6 +27,10 @@ const mergeOptions = generateMergeOptions<MangleClassDefinitionOptionsInternal, 
 );
 
 export function mangleClassDefinition(identifier: string, options: MangleClassDefinitionOptions = {}): string {
+    if (!validateClassIdentifier(identifier)) {
+        throw new InvalidClassIdentifierError(undefined, identifier);
+    }
+
     const opts = mergeOptions(options);
     return `Smalltalk.${opts.package} defineClass: #${mangleClassIdentifier(identifier)}
 	superclass: #{${opts.superclassPackage}.${mangleClassIdentifier(opts.superclass)}}

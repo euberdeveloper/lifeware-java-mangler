@@ -2,7 +2,8 @@ import {
     InvalidConstructorError,
     InvalidMethodError,
     LifewareJavaManglerError,
-    InvalidTypeError
+    InvalidTypeError,
+    InvalidClassIdentifierError
 } from '@src/errors/index.js';
 
 describe('Test: errors classes', function () {
@@ -81,5 +82,24 @@ describe('Test: errors classes', function () {
         expect(error.name).toEqual('InvalidTypeError');
         expect(error.message).toEqual('MESSAGE');
         expect(error.definition).toEqual('TYPE');
+    });
+
+    it(`Should properly create a custom InvalidClassIdentifierError`, function () {
+        const error = new InvalidClassIdentifierError('MESSAGE');
+
+        expect(error).toBeInstanceOf(Error);
+        expect(error).toBeInstanceOf(InvalidClassIdentifierError);
+        expect(error.name).toEqual('InvalidClassIdentifierError');
+        expect(error.message).toEqual('MESSAGE');
+    });
+
+    it(`Should properly create a custom InvalidClassIdentifierError with problematic definition`, function () {
+        const error = new InvalidClassIdentifierError('MESSAGE', 'IDENTIFIER');
+
+        expect(error).toBeInstanceOf(Error);
+        expect(error).toBeInstanceOf(InvalidClassIdentifierError);
+        expect(error.name).toEqual('InvalidClassIdentifierError');
+        expect(error.message).toEqual('MESSAGE');
+        expect(error.definition).toEqual('IDENTIFIER');
     });
 });

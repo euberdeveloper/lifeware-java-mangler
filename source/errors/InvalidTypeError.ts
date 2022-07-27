@@ -1,7 +1,7 @@
 import { LifewareJavaManglerError } from './LifewareJavaManglerError.js';
 
 /**
- * The [[InvalidTypeError]] that happens because the type to mangle is not valid
+ * The [[LifewareJavaManglerError]] that happens because the type to mangle is not valid
  */
 export class InvalidTypeError extends LifewareJavaManglerError {
     private static readonly DEFAULT_MESSAGE = 'Error on parsing type';

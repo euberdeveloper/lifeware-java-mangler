@@ -1,5 +1,5 @@
 import { InvalidConstructorError, InvalidMethodError } from '../errors/index.js';
-import { mangleType } from '../modules/index.js';
+import { CONSTRUCTOR_SIGNATURE_REGEX, mangleType, METHOD_SIGNATURE_REGEX } from '../modules/index.js';
 
 export interface SignatureParameterPart {
     type: string;
@@ -27,10 +27,7 @@ function getParameterParts(parameters: string): SignatureParameterPart[] {
 }
 
 export function getMethodParts(identifier: string): MethodParts {
-    const regexResult =
-        /^\s*(?<returnType>[\w.]+(\[])*)\s+(?<identifier>\w+)\s*\(\s*(?<parameters>(\s*[\w.]+(\[])*\s+\w+\s*,?)*)\)\s*;?\s*$/.exec(
-            identifier
-        );
+    const regexResult = METHOD_SIGNATURE_REGEX.exec(identifier);
 
     if (!regexResult?.groups) {
         throw new InvalidMethodError(undefined, identifier);
@@ -44,9 +41,7 @@ export function getMethodParts(identifier: string): MethodParts {
 }
 
 export function getConstructorParts(identifier: string): ConstructorParts {
-    const regexResult = /^\s*(?<identifier>\w+)\s*\(\s*(?<parameters>(\s*[\w.]+(\[])*\s+\w+\s*,?)*)\)\s*;?\s*$/.exec(
-        identifier
-    );
+    const regexResult = CONSTRUCTOR_SIGNATURE_REGEX.exec(identifier);
 
     if (!regexResult?.groups) {
         throw new InvalidConstructorError(undefined, identifier);
