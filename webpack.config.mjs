@@ -40,12 +40,12 @@ export default {
             }
         ]
     },
-    // plugins: [
-    //     new BundleDeclarationsWebpackPlugin({
-    //         entry: "./source/index.ts",
-    //         outFile: "./index.d.ts"
-    //     })
-    // ],
+    plugins: [
+        new BundleDeclarationsWebpackPlugin({
+            entry: "./source/index.ts",
+            outFile: "./index.d.ts"
+        })
+    ],
     externals: [nodeExternals()],
     output: {
         path: path.resolve(__dirname, './bundled'),

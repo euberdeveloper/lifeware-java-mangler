@@ -1,4 +1,4 @@
-import { PrimitiveType } from '../../types/index.js';
+import { PrimitiveType } from '@/types/index.js';
 
 const primitiveTypeRegex = /^(boolean|byte|char|double|float|int|long|short|void)$/;
 const classTypeRegex =
