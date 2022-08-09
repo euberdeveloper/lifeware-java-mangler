@@ -26,10 +26,12 @@ export default {
             '.js': ['.ts', '.js'],
             '.mjs': ['.mts', '.mjs']
         },
+        alias: {
+            '@': path.resolve(__dirname, 'source')
+        },
         plugins: [new TsconfigPathsPlugin({
             configFile: './source/tsconfig.json',
-            extensions: ['.ts', '.js'],
-            logLevel: 'info'
+            extensions: ['.ts', '.js']
         }), new ResolveTypescriptPlugin()]
     },
     module: {
