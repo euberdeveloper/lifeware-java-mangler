@@ -12,19 +12,24 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 export default {
     target: 'node',
     mode: 'production',
-    // devtool: 'source-map',
-    // experiments: {
-    //     outputModule: true
-    // },
+    devtool: 'source-map',
+    experiments: {
+        outputModule: true
+    },
     entry: {
         index: './source/index.ts',
     },
     resolve: {
         fullySpecified: true,
         extensions: ['.ts', '.js'],
+        extensionAlias: {
+            '.js': ['.ts', '.js'],
+            '.mjs': ['.mts', '.mjs']
+        },
         plugins: [new TsconfigPathsPlugin({
             configFile: './source/tsconfig.json',
-            extensions: ['.ts', '.js']
+            extensions: ['.ts', '.js'],
+            logLevel: 'info'
         }), new ResolveTypescriptPlugin()]
     },
     module: {
