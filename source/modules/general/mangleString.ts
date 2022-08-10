@@ -17,7 +17,7 @@ function checkSingleCharacter(character: string): void {
     /* c8 ignore end */
 }
 
-function mangleSpecalCharacter(character: string): string | null {
+function mangleSpecialCharacter(character: string): string | null {
     return MAPPER[character] ?? null;
 }
 
@@ -29,7 +29,7 @@ function mangleNormalOrUnicodeCharacter(character: string): string | null {
 
 function mangleCharacter(character: string): string {
     checkSingleCharacter(character);
-    return mangleSpecalCharacter(character) ?? mangleNormalOrUnicodeCharacter(character) ?? character;
+    return mangleSpecialCharacter(character) ?? mangleNormalOrUnicodeCharacter(character) ?? character;
 }
 
 export function mangleString(str: string): string {
