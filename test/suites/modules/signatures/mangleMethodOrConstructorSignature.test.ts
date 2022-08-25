@@ -93,7 +93,7 @@ describe('Test @/modules/signatures/mangleMethodSignatureOrConstructor', functio
                 expect(result).toEqual(expected);
             });
 
-            it(`Should mangle "String some_method_name(int index, String[] options)"`, function () {
+            it(`Should mangle "String some_method_name(int index, java.lang.String[] options)"`, function () {
                 const expected = 'j_m_Ljava_Slang_SString_Msome__method__name_CI:_BLjava_Slang_SString_M:';
                 const result = mangleMethodSignature(
                     'java.lang.String some_method_name(int index, java.lang.String[] options)'
@@ -102,7 +102,7 @@ describe('Test @/modules/signatures/mangleMethodSignatureOrConstructor', functio
                 expect(result).toEqual(expected);
             });
 
-            it(`Should mangle "String some_method_name(int index, String[][] options)"`, function () {
+            it(`Should mangle "String some_method_name(int index, java.lang.String[][] options)"`, function () {
                 const expected = 'j_m_Ljava_Slang_SString_Msome__method__name_CI:_B_BLjava_Slang_SString_M:';
                 const result = mangleMethodSignature(
                     'java.lang.String some_method_name(int index, java.lang.String[][] options)'
