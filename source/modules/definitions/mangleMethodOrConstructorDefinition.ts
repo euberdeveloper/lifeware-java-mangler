@@ -42,7 +42,7 @@ export function mangleMethodDefinition(identifier: string): string {
     const signatureWithoutParameters = 'j_m_' + mangleType(parts.returnType) + mangleString(`${parts.identifier}:`);
     const smalltalkSignature = signatureWithoutParameters + mangleParameters(parts.parameters, true);
     const mangledMethodSignature = signatureWithoutParameters + mangleParameters(parts.parameters, false);
-    const mangledJvmArguments = mangledMethodSignature + mangleSmalltalkJVMArguments(parts.parameters);
+    const mangledJvmArguments = mangleSmalltalkJVMArguments(parts.parameters);
     const mangledCallMethod = '$' + (manglePrimitiveType(parts.returnType) ?? 'L').toLocaleLowerCase();
     const mangledHandledResult = getHandleResult(parts.returnType);
     const bodyWithoutReturn = `JVM_Bridge default
