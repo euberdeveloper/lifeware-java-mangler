@@ -1,17 +1,6 @@
 {
+    "extends": "../tsconfig.json",
     "compilerOptions": {
-        "moduleResolution": "Node16",
-        "module": "Node16",
-        "target": "ES2015",
-        "lib": [
-            "ES2022"
-        ],
-        "resolveJsonModule": true,
-        "strictNullChecks": true,
-        "downlevelIteration": true,
-        "esModuleInterop": true,
-        "skipDefaultLibCheck": true,
-        "skipLibCheck": true,
         "sourceMap": true,
         "declaration": true,
         "baseUrl": ".",
@@ -19,7 +8,9 @@
             "@/*": [
                 "./*"
             ],
-        },
-        "outDir": "../dist"
-    }
+        }
+    },
+    "include": [
+        "."
+    ],
 }
