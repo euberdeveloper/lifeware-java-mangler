@@ -48,7 +48,7 @@ export default {
         ]
     },
     plugins: [
-        new BundleDeclarationsWebpackPlugin({
+        new BundleDeclarationsWebpackPlugin.BundleDeclarationsWebpackPlugin({
             entry: "./source/index.ts",
             outFile: "./index.d.ts"
         })
