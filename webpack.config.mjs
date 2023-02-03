@@ -12,16 +12,23 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 export default {
     target: 'node',
     mode: 'production',
-    // devtool: 'source-map',
-    // experiments: {
-    //     outputModule: true
-    // },
+    devtool: 'source-map',
+    experiments: {
+        outputModule: true
+    },
     entry: {
         index: './source/index.ts',
     },
     resolve: {
         fullySpecified: true,
         extensions: ['.ts', '.js'],
+        extensionAlias: {
+            '.js': ['.ts', '.js'],
+            '.mjs': ['.mts', '.mjs']
+        },
+        alias: {
+            '@': path.resolve(__dirname, 'source')
+        },
         plugins: [new TsconfigPathsPlugin({
             configFile: './source/tsconfig.json',
             extensions: ['.ts', '.js']
@@ -40,12 +47,12 @@ export default {
             }
         ]
     },
-    // plugins: [
-    //     new BundleDeclarationsWebpackPlugin({
-    //         entry: "./source/index.ts",
-    //         outFile: "./index.d.ts"
-    //     })
-    // ],
+    plugins: [
+        new BundleDeclarationsWebpackPlugin.BundleDeclarationsWebpackPlugin({
+            entry: "./source/index.ts",
+            outFile: "./index.d.ts"
+        })
+    ],
     externals: [nodeExternals()],
     output: {
         path: path.resolve(__dirname, './bundled'),
