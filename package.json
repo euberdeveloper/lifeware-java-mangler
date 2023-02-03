@@ -25,7 +25,7 @@
     "pretranspile:all": "npm run clean",
     "transpile:all": "tsc",
     "prebundle": "npm run clean",
-    "bundle": "webpack",
+    "bundle": "node build.mjs",
     "lint:source": "eslint source --ext ts --format codeframe",
     "lint:source:fix": "eslint source --ext ts --format codeframe --fix",
     "lint:test": "eslint test --ext ts --format codeframe",
