@@ -1,4 +1,4 @@
-import { InvalidClassIdentifierError } from '../../errors/index.js';
+import { InvalidClassIdentifierError } from '@/errors/index.js';
 import { mangleString, validateClassIdentifier } from '../index.js';
 
 export function mangleObjectIdentifier(identifier: string): string {

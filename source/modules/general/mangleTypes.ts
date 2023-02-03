@@ -1,7 +1,6 @@
-import { PrimitiveType } from '../../types/index.js';
-import { InvalidTypeError } from '../../errors/index.js';
-import { validateType } from '../validation/validateTypes.js';
-import { mangleObjectIdentifier, mangleString } from '../index.js';
+import { PrimitiveType } from '@/types/index.js';
+import { InvalidTypeError } from '@/errors/index.js';
+import { mangleObjectIdentifier, mangleString, validateType } from '../index.js';
 
 const TYPES_MAPPER: Record<PrimitiveType, string> = {
     byte: 'B',

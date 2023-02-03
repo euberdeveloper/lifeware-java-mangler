@@ -1,4 +1,4 @@
-import { getConstructorParts, getMethodParts, mangleParameters } from '../../utils/parseMethodOrConstructor.js';
+import { getConstructorParts, getMethodParts, mangleParameters } from '@/utils/parseMethodOrConstructor.js';
 
 import { mangleString, mangleType } from '../index.js';
 
