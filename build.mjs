@@ -1,13 +1,15 @@
 import { build } from 'esbuild';
-import npmDts from 'npm-dts';
+import { generateDtsBundle } from 'dts-bundle-generator';
 
 import packageJson from './package.json' assert { type: 'json' };
 
-new npmDts.Generator({
-    entry: 'source/index.ts',
-    output: 'bundled/index.d.ts'
-
-}).generate();
+generateDtsBundle([
+    {
+        filePath: './source/index.ts',
+        output: './bundled/index.d.ts'
+    },
+    
+]);
 
 const shared = {
     entryPoints: ['source/index.ts'],
