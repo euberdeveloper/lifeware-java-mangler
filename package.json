@@ -1,13 +1,13 @@
 {
   "name": "lifeware-java-mangler",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "An npm module that allows mangling Java identifiers (e.g. classes or methods identifiers) to JVM mangled names. Used for the Smaltalk/Java binding at Lifeware SA",
   "types": "./bundled/index.d.ts",
   "main": "./bundled/commonjs/index.js",
   "module": "./bundled/esm/index.esm.js",
   "exports": {
     ".": {
-      "require": "./bundled/commonjs/index.js", 
+      "require": "./bundled/commonjs/index.js",
       "import": "./bundled/esm/index.esm.js"
     }
   },
@@ -29,8 +29,10 @@
     "transpile": "npm run transpile:source",
     "pretranspile:all": "npm run clean",
     "transpile:all": "tsc",
+    "bundle:esm": "node build.mjs",
+    "bundle:dts": "dts-bundle-generator -o bundled/index.d.ts --project source/tsconfig.json source/index.ts",
     "prebundle": "npm run clean",
-    "bundle": "node build.mjs",
+    "bundle": "npm run bundle:esm && npm run bundle:dts",
     "lint:source": "eslint source --ext ts --format codeframe",
     "lint:source:fix": "eslint source --ext ts --format codeframe --fix",
     "lint:test": "eslint test --ext ts --format codeframe",
@@ -68,10 +70,10 @@
   "devDependencies": {
     "@euberdeveloper/eslint-plugin": "^2.3.0",
     "@types/jest": "^29.4.0",
-    "@types/node": "^18.11.18",
+    "@types/node": "^18.13.0",
     "dts-bundle-generator": "^7.2.0",
-    "esbuild": "^0.17.5",
-    "jest": "^29.4.1",
+    "esbuild": "^0.17.6",
+    "jest": "^29.4.2",
     "jest-esm-transformer": "^1.0.0",
     "resolve-typescript-plugin": "^2.0.0",
     "shx": "^0.3.4",
