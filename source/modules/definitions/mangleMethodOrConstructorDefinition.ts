@@ -19,6 +19,11 @@ const RETURN_TYPE_MAPPER: Record<PrimitiveType, string> = {
     void: ''
 };
 
+/**
+ * Mangles the JVM arguments
+ * @param parameters The parameters to mangle
+ * @returns The mangled JVM arguments
+ */
 function mangleSmalltalkJVMArguments(parameters: SignatureParameterPart[]): string {
     const separator = '\n\t\t'.replace(/\t/g, '    ');
     return parameters.length
@@ -32,12 +37,22 @@ function mangleSmalltalkJVMArguments(parameters: SignatureParameterPart[]): stri
         : '';
 }
 
+/**
+ * Gets the handle result for a given type
+ * @param type The type to get the handle result for
+ * @returns The handle result
+ */
 function getHandleResult(type: string): string {
     return RETURN_TYPE_MAPPER[type] ?? `objectResultOn: ${mangleClassIdentifier(type)}`;
 }
 
-export function mangleMethodDefinition(identifier: string): string {
-    const parts = getMethodParts(identifier);
+/**
+ * Mangles a method definition given its signature
+ * @param signature The method signature to mangle
+ * @returns The mangled method definition
+ */
+export function mangleMethodDefinition(signature: string): string {
+    const parts = getMethodParts(signature);
 
     const signatureWithoutParameters = 'j_m_' + mangleType(parts.returnType) + mangleString(`${parts.identifier}:`);
     const smalltalkSignature = signatureWithoutParameters + mangleParameters(parts.parameters, true);
@@ -55,8 +70,13 @@ export function mangleMethodDefinition(identifier: string): string {
     ${bodyWithReturn}`;
 }
 
-export function mangleConstructorDefinition(identifier: string): string {
-    const parts = getConstructorParts(identifier);
+/**
+ * Mangles a constructor definition given its signature
+ * @param signature The constructor signature to mangle
+ * @returns The mangled constructor definition
+ */
+export function mangleConstructorDefinition(signature: string): string {
+    const parts = getConstructorParts(signature);
 
     const signatureWithoutParameters = 'j_c_' + mangleString(':');
     const smalltalkSignature = signatureWithoutParameters + mangleParameters(parts.parameters, true);

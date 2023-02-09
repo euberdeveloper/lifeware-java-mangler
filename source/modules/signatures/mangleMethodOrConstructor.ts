@@ -1,9 +1,13 @@
 import { getConstructorParts, getMethodParts, mangleParameters } from '@/utils/parseMethodOrConstructor.js';
 
 import { mangleString, mangleType } from '../index.js';
-
-export function mangleMethodSignature(identifier: string): string {
-    const parts = getMethodParts(identifier);
+/**
+ * Mangles a method signature
+ * @param signature The method signature to mangle
+ * @returns The mangled method signature
+ */
+export function mangleMethodSignature(signature: string): string {
+    const parts = getMethodParts(signature);
 
     return (
         'j_m_' +
@@ -13,7 +17,12 @@ export function mangleMethodSignature(identifier: string): string {
     );
 }
 
-export function mangleConstructorSignature(identifier: string): string {
-    const parts = getConstructorParts(identifier);
+/**
+ * Mangles a constructor signature
+ * @param signature The constructor signature to mangle
+ * @returns The mangled constructor signature
+ */
+export function mangleConstructorSignature(signature: string): string {
+    const parts = getConstructorParts(signature);
     return 'j_c_' + mangleString(':') + mangleParameters(parts.parameters, false);
 }

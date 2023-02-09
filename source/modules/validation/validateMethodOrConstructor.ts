@@ -3,10 +3,20 @@ export const METHOD_SIGNATURE_REGEX =
 export const CONSTRUCTOR_SIGNATURE_REGEX =
     /^\s*(?<identifier>\w+)\s*\(\s*(?<parameters>(\s*[\w.]+(\[])*\s+\w+\s*,?)*)\)\s*;?\s*$/;
 
-export function validateMethodSignature(type: string): boolean {
-    return METHOD_SIGNATURE_REGEX.test(type);
+/**
+ * Validates a method signature
+ * @param signature The method signature to validate
+ * @returns True if the signature is valid, false otherwise
+ */
+export function validateMethodSignature(signature: string): boolean {
+    return METHOD_SIGNATURE_REGEX.test(signature);
 }
 
-export function validateConstructorSignature(type: string): boolean {
-    return CONSTRUCTOR_SIGNATURE_REGEX.test(type);
+/**
+ * Validates a constructor signature
+ * @param signature The constructor signature to validate
+ * @returns True if the signature is valid, false otherwise
+ */
+export function validateConstructorSignature(signature: string): boolean {
+    return CONSTRUCTOR_SIGNATURE_REGEX.test(signature);
 }

@@ -1,6 +1,11 @@
 import { InvalidClassIdentifierError } from '@/errors/index.js';
 import { mangleString, validateClassIdentifier } from '../index.js';
 
+/**
+ * Mangles a class identifier into a valid Java class identifier.
+ * @param identifier The class identifier to mangle.
+ * @returns The mangled class identifier.
+ */
 export function mangleObjectIdentifier(identifier: string): string {
     const parts = identifier.split('.');
     const dividerIndex = parts.findIndex(part => /[A-Z]/.exec(part.charAt(0)));
@@ -14,6 +19,11 @@ export function mangleObjectIdentifier(identifier: string): string {
     return (packageString ? packageString + '/' : '') + classString;
 }
 
+/**
+ * Mangles a class identifier into a valid Java class identifier.
+ * @param identifier The class identifier to mangle.
+ * @returns The mangled class identifier.
+ */
 export function mangleClassIdentifier(identifier: string): string {
     if (!validateClassIdentifier(identifier)) {
         throw new InvalidClassIdentifierError(undefined, identifier);
